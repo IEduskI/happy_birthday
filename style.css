@@ -1,0 +1,426 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(ellipse at center, #1a2332 0%, #0f1419 70%, #000000 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Starry background effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #FFD700, transparent),
+        radial-gradient(2px 2px at 40px 70px, #00FFFF, transparent),
+        radial-gradient(1px 1px at 90px 40px, #FFD700, transparent),
+        radial-gradient(1px 1px at 130px 80px, #00FFFF, transparent),
+        radial-gradient(2px 2px at 160px 30px, #FFD700, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: twinkle 4s ease-in-out infinite alternate;
+    z-index: 1;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* Spanish message styling */
+.spanish-message {
+    font-size: 28px;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: messageAppear 1s ease-out 4s forwards;
+}
+
+.love-message {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF6B6B;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: messageAppear 1s ease-out 4.5s forwards;
+}
+
+/* Grass at the bottom */
+.grass-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    z-index: 5;
+    opacity: 0;
+    animation: grassGrow 2s ease-out 1s forwards;
+}
+
+@keyframes grassGrow {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.grass {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to top, #2d5a3d 0%, #4a7c59 50%, #68b678 100%);
+    clip-path: polygon(
+        0% 100%, 5% 80%, 10% 85%, 15% 75%, 20% 82%, 25% 78%, 30% 85%, 35% 72%, 40% 88%, 45% 75%, 
+        50% 82%, 55% 78%, 60% 85%, 65% 72%, 70% 88%, 75% 75%, 80% 82%, 85% 78%, 90% 85%, 95% 75%, 100% 100%
+    );
+}
+
+.birthday-button {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    border: none;
+    padding: 20px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.birthday-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+}
+
+.birthday-button:active {
+    transform: translateY(-1px);
+}
+
+.hidden {
+    display: none;
+}
+
+.birthday-message {
+    font-size: 60px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    margin: 30px 0;
+    opacity: 0;
+    transform: scale(0);
+    animation: messageAppear 1s ease-out forwards;
+}
+
+@keyframes messageAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-10deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1) rotate(5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.flower-container {
+    position: relative;
+    margin-top: 50px;
+    opacity: 0;
+    animation: flowerGrow 2s ease-out 0.5s forwards;
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    align-items: flex-end;
+}
+
+/* Multiple flowers */
+.single-flower {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.single-flower:nth-child(1) { animation-delay: 0.5s; }
+.single-flower:nth-child(2) { animation-delay: 1s; }
+.single-flower:nth-child(3) { animation-delay: 1.5s; }
+
+@keyframes flowerGrow {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(50px) scale(0.7);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.stem {
+    width: 8px;
+    height: 120px;
+    background: linear-gradient(to top, #4a7c59, #68b678);
+    border-radius: 10px;
+    margin: 0 auto;
+    position: relative;
+    animation: stemGrow 1.5s ease-out forwards;
+    transform: scaleY(0);
+    transform-origin: bottom;
+}
+
+.stem.stem1 { height: 140px; animation-delay: 1.2s; }
+.stem.stem2 { height: 120px; animation-delay: 1.5s; }
+.stem.stem3 { height: 130px; animation-delay: 1.8s; }
+
+@keyframes stemGrow {
+    0% {
+        transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+.leaves {
+    position: absolute;
+    top: 60px;
+    left: -15px;
+    width: 30px;
+    height: 20px;
+}
+
+.leaf {
+    width: 25px;
+    height: 15px;
+    background: #68b678;
+    border-radius: 0 100% 0 100%;
+    position: absolute;
+    animation: leafGrow 0.8s ease-out 2s forwards;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.leaf.left {
+    left: -20px;
+    transform-origin: right bottom;
+    rotate: -45deg;
+}
+
+.leaf.right {
+    right: -20px;
+    transform-origin: left bottom;
+    rotate: 45deg;
+}
+
+@keyframes leafGrow {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.flower-head {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: flowerBloom 1.5s ease-out 2.5s forwards;
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+}
+
+@keyframes flowerBloom {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.2) rotate(180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1) rotate(360deg);
+    }
+}
+
+/* Purple Forget-Me-Not flowers with proper sizing */
+.flower-head {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: flowerBloom 1.5s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+}
+
+.flower-head.flower1 { animation-delay: 2.5s; }
+.flower-head.flower2 { animation-delay: 2.8s; }
+.flower-head.flower3 { animation-delay: 3.1s; }
+
+@keyframes flowerBloom {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.2) rotate(180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1) rotate(360deg);
+    }
+}
+.petal {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #8B5FBF 0%, #6A4C93 50%, #5D4E75 100%);
+    border-radius: 50% 10% 50% 10%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: center center;
+    border: 2px solid #4A148C;
+    box-shadow: 0 2px 8px rgba(139, 95, 191, 0.3);
+}
+
+/* Position the 5 petals in a forget-me-not pattern */
+.petal:nth-child(1) { 
+    transform: translate(-50%, -50%) rotate(0deg) translateY(-20px); 
+}
+.petal:nth-child(2) { 
+    transform: translate(-50%, -50%) rotate(72deg) translateY(-20px); 
+}
+.petal:nth-child(3) { 
+    transform: translate(-50%, -50%) rotate(144deg) translateY(-20px); 
+}
+.petal:nth-child(4) { 
+    transform: translate(-50%, -50%) rotate(216deg) translateY(-20px); 
+}
+.petal:nth-child(5) { 
+    transform: translate(-50%, -50%) rotate(288deg) translateY(-20px); 
+}
+
+.flower-center {
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, #FFE082 0%, #FFC107 50%, #FF8F00 100%);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    border: 2px solid #E65100;
+    box-shadow: 0 2px 6px rgba(255, 143, 0, 0.4);
+}
+
+/* Confetti Animation */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #ff6b6b;
+    animation: confettiFall 3s linear infinite;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.confetti:nth-child(2n) { background: #4ecdc4; animation-delay: 0.3s; }
+.confetti:nth-child(3n) { background: #45b7d1; animation-delay: 0.6s; }
+.confetti:nth-child(4n) { background: #96ceb4; animation-delay: 0.9s; }
+.confetti:nth-child(5n) { background: #feca57; animation-delay: 1.2s; }
+
+@keyframes sparkleFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .birthday-message {
+        font-size: 40px;
+    }
+    
+    .birthday-button {
+        font-size: 18px;
+        padding: 15px 30px;
+    }
+    
+    .flower-head {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .petal {
+        width: 25px;
+        height: 40px;
+    }
+}
