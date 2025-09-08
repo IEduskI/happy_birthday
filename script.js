@@ -2,42 +2,157 @@ document.addEventListener('DOMContentLoaded', function() {
     const birthdayBtn = document.getElementById('birthdayBtn');
     const birthdayMessage = document.getElementById('birthdayMessage');
     const spanishMessage = document.getElementById('spanishMessage');
-    const loveMessage = document.getElementById('loveMessage');
-    const flowerContainer = document.getElementById('flowerContainer');
+    const secondMessage = document.getElementById('secondMessage');
+    const gardenContainer = document.getElementById('gardenContainer');
     const grassContainer = document.getElementById('grassContainer');
 
     birthdayBtn.addEventListener('click', function() {
-        // Hide the button
-        birthdayBtn.style.display = 'none';
+        // Hide the button with fade effect
+        birthdayBtn.style.transition = 'all 0.5s ease-out';
+        birthdayBtn.style.opacity = '0';
+        birthdayBtn.style.transform = 'scale(0.8)';
+        
+        setTimeout(() => {
+            birthdayBtn.style.display = 'none';
+        }, 500);
         
         // Show the birthday message first
-        birthdayMessage.classList.remove('hidden');
+        setTimeout(() => {
+            birthdayMessage.classList.remove('hidden');
+        }, 200);
         
         // Show the grass container
         setTimeout(() => {
             grassContainer.classList.remove('hidden');
-        }, 300);
+        }, 800);
         
-        // Show the flowers after a short delay
+        // Show the garden with staggered flower blooming
         setTimeout(() => {
-            flowerContainer.classList.remove('hidden');
-        }, 500);
+            gardenContainer.classList.remove('hidden');
+            bloomGarden();
+        }, 1200);
         
         // Show Spanish messages after flowers bloom
         setTimeout(() => {
             spanishMessage.classList.remove('hidden');
-        }, 4000);
+        }, 5000);
         
         setTimeout(() => {
-            loveMessage.classList.remove('hidden');
-        }, 4500);
+            secondMessage.classList.remove('hidden');
+        }, 5500);
         
         // Create confetti
-        createConfetti();
+        setTimeout(() => {
+            createConfetti();
+        }, 1500);
         
-        // Play a simple birthday tune (if audio is desired, uncomment below)
-        // playBirthdayTune();
+        // Add butterflies to the garden
+        setTimeout(() => {
+            createButterflies();
+        }, 3000);
     });
+
+    function bloomGarden() {
+        const flowers = document.querySelectorAll('.single-flower');
+        
+        flowers.forEach((flower, index) => {
+            const delay = parseFloat(flower.getAttribute('data-delay')) || 0;
+            
+            setTimeout(() => {
+                // Animate stem growth
+                const stem = flower.querySelector('.stem');
+                stem.style.animation = `stemGrow 1.2s ease-out forwards`;
+                
+                // Animate leaf growth
+                setTimeout(() => {
+                    const leaves = flower.querySelectorAll('.leaf');
+                    leaves.forEach(leaf => {
+                        leaf.style.animation = `leafGrow 0.8s ease-out forwards`;
+                    });
+                }, 800);
+                
+                // Animate flower blooming
+                setTimeout(() => {
+                    const flowerHead = flower.querySelector('.flower-head');
+                    flowerHead.style.animation = `flowerBloom 1.5s ease-out forwards`;
+                    
+                    // Add gentle sway animation after blooming
+                    setTimeout(() => {
+                        flower.style.animation = `gentleSway 4s ease-in-out infinite`;
+                        flower.style.animationDelay = `${Math.random() * 2}s`;
+                    }, 1500);
+                }, 1200);
+                
+            }, delay * 1000);
+        });
+    }
+
+    function createButterflies() {
+        const colors = [
+            ['#FF69B4', '#FFB6C1'], // Pink butterfly
+            ['#9370DB', '#DDA0DD'], // Purple butterfly
+            ['#87CEEB', '#B0E0E6'], // Blue butterfly
+            ['#FFD700', '#FFF8DC'], // Yellow butterfly
+        ];
+        
+        for (let i = 0; i < 4; i++) {
+            setTimeout(() => {
+                createButterfly(colors[i % colors.length]);
+            }, i * 2000);
+        }
+    }
+
+    function createButterfly(colorPair) {
+        const butterfly = document.createElement('div');
+        butterfly.className = 'butterfly';
+        butterfly.innerHTML = `
+            <div class="wing left-wing" style="background: linear-gradient(45deg, ${colorPair[0]}, ${colorPair[1]})"></div>
+            <div class="wing right-wing" style="background: linear-gradient(45deg, ${colorPair[0]}, ${colorPair[1]})"></div>
+            <div class="butterfly-body"></div>
+        `;
+        
+        // Random starting position
+        butterfly.style.left = Math.random() * 20 + '%';
+        butterfly.style.top = Math.random() * 30 + 20 + '%';
+        
+        document.body.appendChild(butterfly);
+        
+        // Animate butterfly flight
+        animateButterflyFlight(butterfly);
+        
+        // Remove butterfly after animation
+        setTimeout(() => {
+            if (butterfly && butterfly.parentNode) {
+                butterfly.parentNode.removeChild(butterfly);
+            }
+        }, 15000);
+    }
+
+    function animateButterflyFlight(butterfly) {
+        const duration = 15000;
+        const startTime = Date.now();
+        const startX = parseFloat(butterfly.style.left);
+        const startY = parseFloat(butterfly.style.top);
+        
+        function animate() {
+            const elapsed = Date.now() - startTime;
+            const progress = elapsed / duration;
+            
+            if (progress < 1) {
+                // Create a figure-8 flight pattern
+                const x = startX + Math.sin(progress * Math.PI * 4) * 30;
+                const y = startY + Math.sin(progress * Math.PI * 2) * 15 - progress * 20;
+                
+                butterfly.style.left = x + '%';
+                butterfly.style.top = y + '%';
+                butterfly.style.transform = `rotate(${Math.sin(progress * Math.PI * 8) * 15}deg)`;
+                
+                requestAnimationFrame(animate);
+            }
+        }
+        
+        animate();
+    }
 
     function createConfetti() {
         const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];

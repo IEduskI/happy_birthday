@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <button class="birthday-button" id="birthdayBtn">
-            💜 Click for Birthday Surprise! 💜
+            💜 Click for a Surprise! 💜
         </button>
         
         <div class="birthday-message hidden" id="birthdayMessage">
@@ -17,61 +17,159 @@
         </div>
         
         <div class="spanish-message hidden" id="spanishMessage">
-            Las flores moradas simbolizan el amor eterno.
+            ¡Que tengas un muy feliz cumpleaños!
         </div>
         
-        <div class="love-message hidden" id="loveMessage">
-            No me olvides ❤
+        <div class="second-message hidden" id="secondMessage">
+            Ojala que la pases increíble hoy rodeada de tu familia y amigos que te aprecian y quieren mucho.
         </div>
         
-        <div class="flower-container hidden" id="flowerContainer">
-            <div class="single-flower">
-                <div class="stem stem1">
-                    <div class="leaves">
-                        <div class="leaf left"></div>
-                        <div class="leaf right"></div>
+        <div class="garden-container hidden" id="gardenContainer">
+            <!-- Front row flowers -->
+            <div class="flower-row front-row">
+                <div class="single-flower" data-delay="0.2">
+                    <div class="stem stem-tall">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head purple">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
                     </div>
-                    <div class="flower-head flower1">
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="flower-center"></div>
+                </div>
+                
+                <div class="single-flower" data-delay="0.6">
+                    <div class="stem stem-medium">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head pink">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="single-flower" data-delay="1.0">
+                    <div class="stem stem-short">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head blue">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="single-flower" data-delay="1.4">
+                    <div class="stem stem-tall">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head purple">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="single-flower" data-delay="1.8">
+                    <div class="stem stem-medium">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head white">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="single-flower">
-                <div class="stem stem2">
-                    <div class="leaves">
-                        <div class="leaf left"></div>
-                        <div class="leaf right"></div>
+            <!-- Middle row flowers -->
+            <div class="flower-row middle-row">
+                <div class="single-flower" data-delay="0.4">
+                    <div class="stem stem-medium">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head pink">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
                     </div>
-                    <div class="flower-head flower2">
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="flower-center"></div>
+                </div>
+                
+                <div class="single-flower" data-delay="0.8">
+                    <div class="stem stem-short">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head blue">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="single-flower" data-delay="1.2">
+                    <div class="stem stem-tall">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head purple">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="single-flower" data-delay="1.6">
+                    <div class="stem stem-medium">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head white">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="single-flower">
-                <div class="stem stem3">
-                    <div class="leaves">
-                        <div class="leaf left"></div>
-                        <div class="leaf right"></div>
+            <!-- Back row flowers -->
+            <div class="flower-row back-row">
+                <div class="single-flower" data-delay="0.3">
+                    <div class="stem stem-tall">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head pink">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
                     </div>
-                    <div class="flower-head flower3">
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="petal"></div>
-                        <div class="flower-center"></div>
+                </div>
+                
+                <div class="single-flower" data-delay="0.7">
+                    <div class="stem stem-medium">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head blue">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="single-flower" data-delay="1.1">
+                    <div class="stem stem-short">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head purple">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="single-flower" data-delay="1.5">
+                    <div class="stem stem-tall">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head white">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="single-flower" data-delay="1.9">
+                    <div class="stem stem-medium">
+                        <div class="leaves"><div class="leaf left"></div><div class="leaf right"></div></div>
+                        <div class="flower-head pink">
+                            <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+                            <div class="flower-center"></div>
+                        </div>
                     </div>
                 </div>
             </div>

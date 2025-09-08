@@ -58,7 +58,7 @@ body::before {
     animation: messageAppear 1s ease-out 4s forwards;
 }
 
-.love-message {
+.second-message {
     font-size: 24px;
     font-weight: bold;
     color: #FF6B6B;
@@ -157,15 +157,56 @@ body::before {
     }
 }
 
-.flower-container {
+/* Garden Container Styles */
+.garden-container {
     position: relative;
     margin-top: 50px;
     opacity: 0;
-    animation: flowerGrow 2s ease-out 0.5s forwards;
+    animation: gardenAppear 2s ease-out forwards;
+    width: 100%;
+    max-width: 1000px;
+    height: 400px;
+    perspective: 1000px;
+}
+
+@keyframes gardenAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Flower Rows for 3D Garden Effect */
+.flower-row {
+    position: absolute;
+    width: 100%;
     display: flex;
-    justify-content: center;
-    gap: 80px;
+    justify-content: space-around;
     align-items: flex-end;
+}
+
+.front-row {
+    bottom: 0;
+    z-index: 10;
+    transform: scale(1.1);
+}
+
+.middle-row {
+    bottom: 50px;
+    z-index: 5;
+    transform: scale(1.0);
+    opacity: 0.9;
+}
+
+.back-row {
+    bottom: 100px;
+    z-index: 1;
+    transform: scale(0.8);
+    opacity: 0.7;
 }
 
 /* Multiple flowers */
@@ -174,42 +215,43 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 10px;
 }
 
-.single-flower:nth-child(1) { animation-delay: 0.5s; }
-.single-flower:nth-child(2) { animation-delay: 1s; }
-.single-flower:nth-child(3) { animation-delay: 1.5s; }
-
-@keyframes flowerGrow {
-    0% {
-        opacity: 0;
-        transform: translateY(100px) scale(0);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(50px) scale(0.7);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+/* Gentle swaying animation for bloomed flowers */
+@keyframes gentleSway {
+    0%, 100% { transform: rotate(0deg) translateX(0px); }
+    25% { transform: rotate(2deg) translateX(2px); }
+    50% { transform: rotate(0deg) translateX(0px); }
+    75% { transform: rotate(-2deg) translateX(-2px); }
 }
 
-.stem {
-    width: 8px;
-    height: 120px;
-    background: linear-gradient(to top, #4a7c59, #68b678);
-    border-radius: 10px;
-    margin: 0 auto;
-    position: relative;
-    animation: stemGrow 1.5s ease-out forwards;
+/* Different stem heights */
+.stem-short { 
+    height: 100px; 
     transform: scaleY(0);
     transform-origin: bottom;
 }
 
-.stem.stem1 { height: 140px; animation-delay: 1.2s; }
-.stem.stem2 { height: 120px; animation-delay: 1.5s; }
-.stem.stem3 { height: 130px; animation-delay: 1.8s; }
+.stem-medium { 
+    height: 130px; 
+    transform: scaleY(0);
+    transform-origin: bottom;
+}
+
+.stem-tall { 
+    height: 160px; 
+    transform: scaleY(0);
+    transform-origin: bottom;
+}
+
+.stem {
+    width: 8px;
+    background: linear-gradient(to top, #4a7c59, #68b678);
+    border-radius: 10px;
+    margin: 0 auto;
+    position: relative;
+}
 
 @keyframes stemGrow {
     0% {
@@ -222,7 +264,7 @@ body::before {
 
 .leaves {
     position: absolute;
-    top: 60px;
+    top: 60%;
     left: -15px;
     width: 30px;
     height: 20px;
@@ -231,10 +273,9 @@ body::before {
 .leaf {
     width: 25px;
     height: 15px;
-    background: #68b678;
+    background: linear-gradient(45deg, #68b678, #7bc985);
     border-radius: 0 100% 0 100%;
     position: absolute;
-    animation: leafGrow 0.8s ease-out 2s forwards;
     opacity: 0;
     transform: scale(0);
 }
@@ -268,10 +309,8 @@ body::before {
     position: absolute;
     top: -50px;
     left: 50%;
-    transform: translateX(-50%);
-    animation: flowerBloom 1.5s ease-out 2.5s forwards;
-    opacity: 0;
     transform: translateX(-50%) scale(0);
+    opacity: 0;
 }
 
 @keyframes flowerBloom {
@@ -289,48 +328,39 @@ body::before {
     }
 }
 
-/* Purple Forget-Me-Not flowers with proper sizing */
-.flower-head {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: flowerBloom 1.5s ease-out forwards;
-    opacity: 0;
-    transform: translateX(-50%) scale(0);
+/* Different flower colors */
+.flower-head.purple .petal {
+    background: linear-gradient(135deg, #8B5FBF 0%, #6A4C93 50%, #5D4E75 100%);
+    border: 2px solid #4A148C;
+    box-shadow: 0 2px 8px rgba(139, 95, 191, 0.4);
 }
 
-.flower-head.flower1 { animation-delay: 2.5s; }
-.flower-head.flower2 { animation-delay: 2.8s; }
-.flower-head.flower3 { animation-delay: 3.1s; }
-
-@keyframes flowerBloom {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) scale(0) rotate(0deg);
-    }
-    50% {
-        opacity: 1;
-        transform: translateX(-50%) scale(1.2) rotate(180deg);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) scale(1) rotate(360deg);
-    }
+.flower-head.pink .petal {
+    background: linear-gradient(135deg, #FF69B4 0%, #FF1493 50%, #C71585 100%);
+    border: 2px solid #8B008B;
+    box-shadow: 0 2px 8px rgba(255, 105, 180, 0.4);
 }
+
+.flower-head.blue .petal {
+    background: linear-gradient(135deg, #87CEEB 0%, #4682B4 50%, #2F4F4F 100%);
+    border: 2px solid #1E90FF;
+    box-shadow: 0 2px 8px rgba(135, 206, 235, 0.4);
+}
+
+.flower-head.white .petal {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F0F0F0 50%, #E0E0E0 100%);
+    border: 2px solid #D3D3D3;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.6);
+}
+
 .petal {
     width: 28px;
     height: 28px;
-    background: linear-gradient(135deg, #8B5FBF 0%, #6A4C93 50%, #5D4E75 100%);
     border-radius: 50% 10% 50% 10%;
     position: absolute;
     left: 50%;
     top: 50%;
     transform-origin: center center;
-    border: 2px solid #4A148C;
-    box-shadow: 0 2px 8px rgba(139, 95, 191, 0.3);
 }
 
 /* Position the 5 petals in a forget-me-not pattern */
@@ -362,6 +392,50 @@ body::before {
     z-index: 10;
     border: 2px solid #E65100;
     box-shadow: 0 2px 6px rgba(255, 143, 0, 0.4);
+}
+
+/* Butterfly Animation Styles */
+.butterfly {
+    position: fixed;
+    width: 30px;
+    height: 20px;
+    z-index: 15;
+    pointer-events: none;
+}
+
+.wing {
+    position: absolute;
+    width: 12px;
+    height: 16px;
+    border-radius: 60% 20% 60% 20%;
+    animation: wingFlap 0.3s ease-in-out infinite alternate;
+}
+
+.left-wing {
+    left: 2px;
+    transform-origin: right center;
+}
+
+.right-wing {
+    right: 2px;
+    transform-origin: left center;
+    animation-delay: 0.15s;
+}
+
+.butterfly-body {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 16px;
+    background: #333;
+    border-radius: 2px;
+}
+
+@keyframes wingFlap {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(45deg); }
 }
 
 /* Confetti Animation */
@@ -414,13 +488,75 @@ body::before {
         padding: 15px 30px;
     }
     
+    .garden-container {
+        height: 300px;
+        max-width: 100%;
+        margin: 20px;
+    }
+    
+    .flower-row {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .single-flower {
+        margin: 0 5px;
+    }
+    
     .flower-head {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
     }
     
     .petal {
-        width: 25px;
-        height: 40px;
+        width: 20px;
+        height: 20px;
     }
+    
+    .stem-short { height: 80px; }
+    .stem-medium { height: 100px; }
+    .stem-tall { height: 120px; }
+    
+    .front-row { transform: scale(1.0); }
+    .middle-row { transform: scale(0.9); bottom: 30px; }
+    .back-row { transform: scale(0.7); bottom: 60px; }
+    
+    .butterfly { 
+        width: 20px; 
+        height: 15px; 
+    }
+    
+    .wing {
+        width: 8px;
+        height: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .garden-container {
+        height: 250px;
+    }
+    
+    .flower-row {
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    
+    .single-flower {
+        margin: 0 2px;
+    }
+    
+    .flower-head {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .petal {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .stem-short { height: 60px; }
+    .stem-medium { height: 80px; }
+    .stem-tall { height: 100px; }
 }
